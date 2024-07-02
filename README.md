@@ -7,11 +7,12 @@
 
 
 *********Automation framework*************
-Executed each of the functional Test case in postman and converted the functional tests to Automation scripts.
-Created Maven project to build, write and execute tests along with TestNG.
-There are 4 Test files created to test Message API >> PostMessagesTests, GetMessageTests, DeleteMessageTests, UpdateMessageTests 
-Each test file contains their respective tests with combination of test data.
-In addition to Test files, 5 helper classes where created to map the api response, Base class to have all the functions in the Tests.
+
+# Executed each of the functional Test case in postman and converted the functional tests to Automation scripts.
+# Created Maven project to build, write and execute tests along with TestNG.
+# There are 4 Test files created to test Message API >> PostMessagesTests, GetMessageTests, DeleteMessageTests, UpdateMessageTests 
+# Each test file contains their respective tests with combination of test data.
+# In addition to Test files, 5 helper classes where created to map the api response, Base class to have all the functions in the Tests.
 
 Through automation following validation are done.
 	1. Request and Response payload validation
