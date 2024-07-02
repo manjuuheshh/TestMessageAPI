@@ -4,6 +4,23 @@
 3. API not allowing the edit of the sent messages i.e., put Method is not working, returning 404 error code.
 4. When invalid message id is used for get call, API should return any meaningful error message to state that the resource is not available
 
+1. verify that API allows user1 to send message to user2 ----> response should be 200 and response should return message id
+2. Verify that the api has mandatory validation for value in the id field ----> no mandatory validation for id value, api returns 200 for even empty id value.
+3. Verify that the api allows empty message to be sent between the users. ----> allowed to send empty messages
+4. Verify that the api allows to send duplicate message between the same user ---> allowed with different message id
+5. verify that the API performs update operation-----> not able to update the message
+4. verify that api able to delete the sent message of particular messageid ---->
+5. verify the list of messages sent from user1 & user2 
+6. verify the list of messages sent from user1 to user2 after deleting one of the message from user 1
+7. verify user2 able to send message to user1
+
+
+1. Verify that the api returns 200 response code while creating message
+2. Verify that the api returns a response body with message id while creating the message
+3. Verify that the api returned a message id with length 36
+
+
+
 *********Automation framework*************
 Executed each of the functional Test case in postman and converted the functional tests to Automation scripts.
 Created Maven project to build, write and execute tests along with TestNG.

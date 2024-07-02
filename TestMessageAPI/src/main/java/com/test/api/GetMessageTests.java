@@ -1,10 +1,9 @@
 package com.test.api;
-import static io.restassured.RestAssured.*;
-import static io.restassured.matcher.RestAssuredMatchers.*;
-import static org.hamcrest.Matchers.*;
 
+
+import org.testng.annotations.Test;
+import org.testng.AssertJUnit;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Set;
 
 import org.testng.Assert;
@@ -28,9 +27,9 @@ public class GetMessageTests {
 	@Test(description="Verifying that API able to GET all messages in the endpoint irrespective of the user")
 	public void Verify_that_API_fetches_all_messages_from_messages_enpoint() {
 		dmap = new DataMappingClass("hello", fro, t1);
+		//get all messages 
 		msgclass.getMessage(RestAssured.basePath);
-		System.out.println(msgclass.getMessage(RestAssured.basePath));
-		Assert.assertEquals(msgclass.getStatusCode(),200);
+		AssertJUnit.assertEquals(msgclass.getStatusCode(),200);
 	}
 	
 	@Test(description="Verifying that API able to GET message for a particular message id")
@@ -39,13 +38,27 @@ public class GetMessageTests {
 		String messageId = msgclass.createMessage(dmap,RestAssured.basePath );
 		String messageEndpoint = RestAssured.basePath+messageId;
 		msgclass.getMessage(messageEndpoint);
-		Assert.assertEquals(msgclass.getStatusCode(),200);
+		
+		//assert status code
+		AssertJUnit.assertEquals(msgclass.getStatusCode(),200);
+		
+		//assert message id is not null
 		Assert.assertNotNull(msgclass.getResponseBodyUsingKey("id"));
-		Assert.assertEquals(messageId, msgclass.getResponseBodyUsingKey("id"));
+		
+		//assert that id value in request and response payload matches 
+		AssertJUnit.assertEquals(messageId, msgclass.getResponseBodyUsingKey("id"));
+		
+		//assert value of message key is not null  
 		Assert.assertNotNull(msgclass.getResponseBodyUsingKey("message"));
-		Assert.assertEquals("hello", msgclass.getResponseBodyUsingKey("message"));
-		Assert.assertEquals("user1", msgclass.getResponseBodyUsingKey("from.id"));
-		Assert.assertEquals("user2", msgclass.getResponseBodyUsingKey("to.id"));
+		
+		//assert respone and request payload has same message
+		AssertJUnit.assertEquals("hello", msgclass.getResponseBodyUsingKey("message"));
+		
+		//assert respone and request payload has same from id
+		AssertJUnit.assertEquals("user1", msgclass.getResponseBodyUsingKey("from.id"));
+		
+		//assert respone and request payload has same to id
+		AssertJUnit.assertEquals("user2", msgclass.getResponseBodyUsingKey("to.id"));
 	}
 	
 	@Test(description="Verifying that API returns 404 error code for invalid message id")
@@ -53,7 +66,9 @@ public class GetMessageTests {
 		String messageId = "1e2ee6d9";
 		String messageEndpoint = RestAssured.basePath+messageId;
 		msgclass.getMessage(messageEndpoint);
-		Assert.assertEquals(msgclass.getStatusCode(),404);
+		
+		//assert status code
+		AssertJUnit.assertEquals(msgclass.getStatusCode(),404);
 	}
 	
 	@Test(description="Verifying that API returns 404 error code for null message id")
@@ -61,7 +76,9 @@ public class GetMessageTests {
 		String messageId = null;
 		String messageEndpoint = RestAssured.basePath+messageId;
 		msgclass.getMessage(messageEndpoint);
-		Assert.assertEquals(msgclass.getStatusCode(),404);
+		
+		//assert status code
+		AssertJUnit.assertEquals(msgclass.getStatusCode(),404);
 	}
 	
 	@Test(description="Verifying that generated message ids are unique")

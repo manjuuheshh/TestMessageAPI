@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="Failed suite [messageAPI]" guice-stage="DEVELOPMENT">
-  <test thread-count="5" name="Test(failed)">
+<suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
+  <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.test.api.UpdateMessageTests">
+      <class name="com.test.api.DeleteMessageTests">
         <methods>
+          <include name="verify_Deletion_of_message_is_success"/>
           <include name="setup"/>
-          <include name="sendMessage"/>
         </methods>
-      </class> <!-- com.test.api.UpdateMessageTests -->
+      </class> <!-- com.test.api.DeleteMessageTests -->
     </classes>
-  </test> <!-- Test(failed) -->
-</suite> <!-- Failed suite [messageAPI] -->
+  </test> <!-- Default test(failed) -->
+</suite> <!-- Failed suite [Default suite] -->

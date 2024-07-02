@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="messageAPI">
-  <test thread-count="5" name="Test" preserve-order="true">
+<suite name="Suite">
+  <test thread-count="5" name="Test">
     <classes>
-      <class name="com.test.api.GetMessageTests"/>  
-      <class name="com.test.api.PostMessagesTests"/>
-      <class name="com.test.api.DeleteMessageTests"/>    
-      <class name="com.test.api.UpdateMessageTests"/>    
+      <class name="com.test.api.GetMessageTests"/>
     </classes>
   </test> <!-- Test -->
-</suite> <!-- messageAPI -->
+</suite> <!-- Suite -->

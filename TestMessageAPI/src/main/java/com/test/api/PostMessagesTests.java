@@ -25,10 +25,14 @@ public class PostMessagesTests {
 	public void sendMessage(){
 		dmap = new DataMappingClass("hello", fro, t1);
 		msgclass.createMessage(dmap, RestAssured.baseURI );
+		
+		//assert status code
 		Assert.assertEquals(msgclass.getStatusCode(), 200);
 		String id = msgclass.getResponseBodyUsingKey("id");
-		System.out.println(id);
+		//assert that id value is not null
 		Assert.assertNotNull(id);
+		
+		//verify the length of the id
 		Assert.assertEquals(id.length(), idLength);		
 	}
 	
@@ -36,10 +40,14 @@ public class PostMessagesTests {
 	public void sendEmptyMessage(){
 		dmap = new DataMappingClass("", fro, t1);
 		msgclass.createMessage(dmap, RestAssured.baseURI );
+		
+		//assert status code
 		Assert.assertEquals(msgclass.getStatusCode(), 200);
 		String id = msgclass.getResponseBodyUsingKey("id");
-		System.out.println(id);
+		//assert that id value is not null
 		Assert.assertNotNull(id);
+				
+		//verify the length of the id
 		Assert.assertEquals(id.length(), idLength);	
 	}
 	
@@ -47,8 +55,12 @@ public class PostMessagesTests {
 	public void sendMessageWithNoSenderAndReceiver(){
 		dmap = new DataMappingClass("hi",null,null);
 		msgclass.createMessage(dmap, RestAssured.baseURI );
+		
+		//assert status code
 		Assert.assertEquals(msgclass.getStatusCode(), 400);
 		String errorMessage = msgclass.getResponseBodyUsingKey("error.name");
+		
+		//assert error message in the response payload 
 		Assert.assertEquals("ServiceError", errorMessage);	
 	}
 	
@@ -56,19 +68,27 @@ public class PostMessagesTests {
 	public void sendMessageWithEmptySenderAndReceiverId(){
 		dmap = new DataMappingClass("empty user id", emptyfrom, emptyTo);
 		msgclass.createMessage(dmap, RestAssured.baseURI );
+		
+		//assert status code
 		Assert.assertEquals(msgclass.getStatusCode(), 200);
 		String id = msgclass.getResponseBodyUsingKey("id");
-		System.out.println(id);
+		
+		//assert that id value is not null
 		Assert.assertNotNull(id);
-		Assert.assertEquals(id.length(), idLength);		
+						
+		//verify the length of the id
+		Assert.assertEquals(id.length(), idLength);			
 	}
 	
 	@Test(description="verify api should return error for Sending message without message field")
 	public void sendMessageWithNoMessageField(){
 		dmap = new DataMappingClass(null, fro, t1);
 		msgclass.createMessage(dmap, RestAssured.baseURI );
+		//assert status code
 		Assert.assertEquals(msgclass.getStatusCode(), 400);
 		String errorMessage = msgclass.getResponseBodyUsingKey("error.name");
-		Assert.assertEquals("ServiceError", errorMessage);		
+		
+		//assert error message in the response payload 
+		Assert.assertEquals("ServiceError", errorMessage);			
 	}
 }
