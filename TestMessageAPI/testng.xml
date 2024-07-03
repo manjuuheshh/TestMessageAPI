@@ -4,6 +4,9 @@
   <test thread-count="5" name="Test">
     <classes>
       <class name="com.test.api.GetMessageTests"/>
+      <class name="com.test.api.PostMessagesTests"/>
+      <class name="com.test.api.DeleteMessageTests"/>
+      <class name="com.test.api.UpdateMessageTests"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->
